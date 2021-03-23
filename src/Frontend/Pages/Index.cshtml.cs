@@ -17,9 +17,14 @@ namespace Frontend.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
+        public string Message { get; set; }
 
+        public async Task<IActionResult> OnGetAsync([FromServices] WebClient webClient)
+        {
+            var result = await webClient.GetMessageAsync();
+            Message = result ?? "nil";
+
+            return Page();
         }
     }
 }
