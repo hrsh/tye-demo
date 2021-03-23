@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
 namespace WebGateway
 {
@@ -18,6 +20,7 @@ namespace WebGateway
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOcelot();
             services.AddControllers();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
@@ -30,6 +33,7 @@ namespace WebGateway
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseOcelot().Wait();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
