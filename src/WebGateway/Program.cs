@@ -1,5 +1,6 @@
 using Figgle;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.CodeAnalysis.FlowAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -30,17 +31,13 @@ namespace WebGateway
                     .ReadFrom.Services(services)
                     .Enrich.FromLogContext()
                     .WriteTo.Console())
-                .ConfigureAppConfiguration((hosting,config) =>
-                {
-                    config
-                    .SetBasePath(hosting.HostingEnvironment.ContentRootPath)
-                    .AddJsonFile("appsetting.json", true, true)
-                    .AddJsonFile("ocelot.json", false, true)
-                    .AddEnvironmentVariables();
-                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureAppConfiguration(config =>
+                    {
+                        config.AddJsonFile("ocelot.json", false, true);
+                    });
                 });
     }
 }

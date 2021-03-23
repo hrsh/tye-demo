@@ -1,5 +1,54 @@
 {
-	"Routes": [],
+	"Routes": [
+		{
+			"DownstreamPathTemplate": "/api/v1/catalog",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5001
+				}
+			],
+			"UpstreamPathTemplate": "/catalog-service/catalog",
+			"UpstreamHttpMethod": [ "Get" ],
+			"LoadBalancer": "",
+			"RateLimitOptions": {
+				"ClientWhitelist": [],
+				"EnableRateLimiting": true,
+				"Period": "5s",
+				"PeriodTimespan": 1,
+				"Limit": 1
+			},
+			"FileCacheOptions": {
+				"TtlSeconds": 30,
+				"Region": ""
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/catalog/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5001
+				}
+			],
+			"UpstreamPathTemplate": "/catalog-service/catalog/{id}",
+			"UpstreamHttpMethod": [ "Get" ],
+			"LoadBalancer": "",
+			"RateLimitOptions": {
+				"ClientWhitelist": [],
+				"EnableRateLimiting": true,
+				"Period": "5s",
+				"PeriodTimespan": 1,
+				"Limit": 1
+			},
+			"FileCacheOptions": {
+				"TtlSeconds": 30,
+				"Region": ""
+			}
+		}
+	],
 	"GlobalConfiguration": {
 		"BaseUrl": "https://localhost:5003"
 	}
