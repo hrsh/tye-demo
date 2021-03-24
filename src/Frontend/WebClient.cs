@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -10,7 +6,7 @@ namespace Frontend
 {
     public class WebClient
     {
-        private readonly JsonSerializerOptions options = new JsonSerializerOptions()
+        private readonly JsonSerializerOptions options = new()
         {
             PropertyNameCaseInsensitive = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,

@@ -3,8 +3,9 @@
 namespace ServiceDiscovery.Api1.Controllers
 {
     [ApiController]
+    [Route("api/c1/[controller]")]
     public class HomeController : ControllerBase
     {
-        [HttpGet, Route("~/")] public IActionResult Get() => Ok("Client1");
+        [HttpGet] public IActionResult Get() => Ok("Client1");
     }
 }
